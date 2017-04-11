@@ -11,7 +11,7 @@ import { Hero } from './hero';
 
 @Injectable()
 export class HeroService{
-    private headers = new Headers({'Content-Type':'application/json'});
+    private headers = new Headers({'Content-Type':'application/x-www-form-urlencoded'});
     private heroesUrl = 'http://godnodejs.hopto.org:3000/api/users'; //URL to web api
 
     constructor (private http: Http) { }
@@ -29,7 +29,7 @@ export class HeroService{
         return this.http
                     .get(this.heroesUrl)
                     .toPromise()
-                    .then(response => response.json().data as Hero[])
+                    .then(response => response.json().Users as Hero[])
                     .catch(this.handleError)
     }
 
@@ -45,7 +45,7 @@ export class HeroService{
         const url = `${this.heroesUrl}/${id}`;
         return this.http.get(url)
                    .toPromise()
-                   .then(response => response.json().data as Hero)
+                   .then(response => response.json().Users as Hero)
                    .catch(this.handleError);
     }
 
